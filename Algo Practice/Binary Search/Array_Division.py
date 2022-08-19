@@ -17,7 +17,9 @@ def tup_in():
 I did a similar CF problem: Magazine Ad, this is just that but without the extra words.
 Binary search over all possible maxs
 - Upper bound: sum(X)
+- Lower bound: max(X)
 
+All my time was spent debugging make_subarray lol
 """
 
 def solution():
@@ -25,28 +27,32 @@ def solution():
     X = arr_in()
 
     # check if possible to make subarray with this max size
-    def make_subarray(size, ev = 0):
-        if ev == 0:
-            subarray_ct = 0
-            curr_size = 0
-            if max(X) > size:
-                return False
-            for x in X:
-                curr_size += x
-                if curr_size > size:
-                    curr_size = x
-                    subarray_ct += 1
-                elif curr_size == size:
-                    curr_size = 0
-            return subarray_ct <= k
+    def make_subarray(size):
+        subarray_ct = 0
+        curr_size = 0
+
+        for x in X:
+            curr_size += x
+            if curr_size == size:
+                curr_size = 0
+                subarray_ct += 1
+            elif curr_size > size:
+                curr_size = x
+                subarray_ct += 1
             
+        if curr_size > 0:
+            subarray_ct += 1
+        # print(subarray_ct, size)    
 
+        return subarray_ct <= k
 
-    left = 0
+    left = max(X) - 1
     right = sum(X)
 
     while left + 1 < right:
         mid = left + (right - left) // 2
+        # print(left, mid, right)
+
         if make_subarray(mid): 
             right = mid 
         else:

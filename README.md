@@ -1,6 +1,6 @@
 # CP
 
-Pramana's competitive programming archive.
+Pramana's (mostly python) competitive programming archive.
 
 CF - https://codeforces.com/profile/pramana
 

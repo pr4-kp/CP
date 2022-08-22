@@ -1,13 +1,6 @@
 import sys
-# # (optional) very fast input
-#import io
-#import os
-
-# input = io.BytesIO(os.read(0, os.fstat(0).st_size)).readline
 inf = float('inf')
 input = sys.stdin.readline
-def arr_in(): return list(map(int, input().split()))
-def tup_in(): return map(int, input().split())
 
 # --- BEGIN SEGMENT TREE---
 class SegmentTree:
@@ -47,15 +40,15 @@ class SegmentTree:
 
 
 def solution():
-    n, q = tup_in()
-    X = arr_in()
-    STX = SegmentTree(X, n)
+    n, q = map(int, input().split())
+    array = list(map(int, input().split()))
+    array_segment_tree = SegmentTree(array, n)
     for _ in range(q):
-        t, k, u = tup_in()
+        t, k, u = map(int, input().split())
         if t == 1:
-            STX.update(k - 1, u)
+            array_segment_tree.update(k - 1, u)
         else:
-            print(STX.query(k - 1, u))
+            print(array_segment_tree.query(k - 1, u))
 
 
 if __name__ == "__main__":

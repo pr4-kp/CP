@@ -12,31 +12,24 @@ def arr_in():
 def tup_in():
     return map(int, input().split())
 
-"""
---- Notes ---
-There are probably 3 ways to sort:
-1. by width. So then we can binary search for width very fast
-2. by height "
-3. by area. But there are plenty of rects with a good area that do not work
-
-none of these are much more efficient than what I was doing
-"""
-
 def solution():
     for _ in range(int(input())):
         n, q = tup_in()
-        rects = []
-        dp = [[] * 1001 for i in range(1001)]
+        dp = [[0]*1001 for i in range(1001)]
+
+        # set rects in array
         for _ in range(n):
-            rects.append(arr_in())
-            
+            h, w = tup_in()
+            dp[h][w] += h * w
+
+        # 2D psum
+        for ii in range(1, 1001): 
+            for jj in range(1, 1001): 
+                dp[ii][jj] += dp[ii - 1][jj] + dp[ii][jj - 1] - dp[ii - 1][jj - 1]
         for _ in range(q):
-            ans = 0
-            hs, ws, hb, wb = tup_in()
-            for a in rects:
-                if hs < a[0] < hb and ws < a[1] < wb:
-                    ans += a[0] * a[1]
-            print(ans)
+            hl, wl, hh, wh = tup_in()
+            print(dp[hh - 1][wh - 1] - dp[hl][wh - 1] - dp[hh - 1][wl] + dp[hl][wl])
+            
 
 if __name__ == "__main__":
     solution()

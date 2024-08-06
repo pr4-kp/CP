@@ -1,0 +1,1 @@
+{"name":"Local: Challenge","url":"/Users/pramana/Documents/code/competitive programming/Challenge.cpp","tests":[{"id":1721621451536,"input":"3 5\nleft_oar\nright_oar\nleft_oar\nhull\nright_oar\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/Users/pramana/Documents/code/competitive programming/Challenge.cpp","group":"local","local":true}
